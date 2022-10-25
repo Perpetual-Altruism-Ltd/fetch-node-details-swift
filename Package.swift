@@ -13,7 +13,7 @@ let package = Package(
             targets: ["FetchNodeDetails"]),
     ],
     dependencies: [
-        .package(name:"web3.swift", url: "https://github.com/argentlabs/web3.swift", from:"0.9.3"),
+        .package(name:"web3.swift", url: "https://github.com/argentlabs/web3.swift", from:"1.2.0"),
         .package(url: "https://github.com/mxcl/PromiseKit", from: "6.0.0")
     ],
     targets: [
