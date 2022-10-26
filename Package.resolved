@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "OpenCombine",
+        "repositoryURL": "https://github.com/OpenCombine/OpenCombine.git",
+        "state": {
+          "branch": null,
+          "revision": "9cf67e363738dbab61b47fb5eaed78d3db31e5ee",
+          "version": "0.13.0"
+        }
+      },
+      {
         "package": "PromiseKit",
         "repositoryURL": "https://github.com/mxcl/PromiseKit",
         "state": {
@@ -30,11 +39,11 @@
       },
       {
         "package": "secp256k1",
-        "repositoryURL": "https://github.com/Boilertalk/secp256k1.swift",
+        "repositoryURL": "https://github.com/GigaBitcoin/secp256k1.swift.git",
         "state": {
           "branch": null,
-          "revision": "45e458ec3be46cf0a6eb68bc947f797852dc65d8",
-          "version": "0.1.6"
+          "revision": "39dd39248e769ea88253a0ce300399b402a64529",
+          "version": "0.9.2"
         }
       },
       {
@@ -42,8 +51,8 @@
         "repositoryURL": "https://github.com/argentlabs/web3.swift",
         "state": {
           "branch": null,
-          "revision": "0474eb5e883bc4800b3909833207a1d35e72b808",
-          "version": "0.9.3"
+          "revision": "9d43f22a24970d6205e0f9f4d09224c341240072",
+          "version": "1.2.0"
         }
       }
     ]
