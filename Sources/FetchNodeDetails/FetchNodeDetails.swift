@@ -73,7 +73,7 @@ open class FetchNodeDetails {
         self.network = network
         self.urlSession = urlSession
         let clientUrl = network == .CUSTOM(path: network.path) ? URL(string: network.path)! : URL(string: "https://\(network.path).infura.io/v3/\(projectID)")!
-        client = EthereumClient(url: clientUrl, sessionConfig: self.urlSession.configuration)
+        client = EthereumHttpClient(url: clientUrl, sessionConfig: self.urlSession.configuration)
     }
 
     public func getNodeDetails(verifier: String, verifierID: String) -> Promise<AllNodeDetailsModel> {
@@ -89,9 +89,17 @@ open class FetchNodeDetails {
             seal.reject(FNDError.transactionEncodingFailed)
             return tempPromise
         }
-        client.eth_call(transcation, block: .Latest) { [unowned self] _, info in
+        client.eth_call(transcation, block: .Latest) { [unowned self] result in
             do {
-                if let info = info {
+                switch result {
+                case .failure(let error):
+                    
+                    debugPrint(error.localizedDescription)
+                    os_log("%s", log: getTorusLogger(log: FNDLogger.core, type: .error), type: .error, FNDError.infoFailed.debugDescription)
+                    seal.reject(FNDError.infoFailed)
+                    return
+                    
+                case .success(let info):
                     guard let decodedTuple = try decodeNodeData(info: info)
                     else {
                         seal.reject(FNDError.decodingFailed)
@@ -116,10 +124,6 @@ open class FetchNodeDetails {
                     self.updated = true
                     os_log("nodeDetails is: %@", log: getTorusLogger(log: FNDLogger.core, type: .info), type: .info, "\(self.nodeDetails)")
                     seal.fulfill(self.nodeDetails)
-                } else {
-                    os_log("%s", log: getTorusLogger(log: FNDLogger.core, type: .error), type: .error, FNDError.infoFailed.debugDescription)
-                    seal.reject(FNDError.infoFailed)
-                    return
                 }
             } catch {
                 if self.proxyAddress.value == FetchNodeDetails.proxyAddressMainnet {
