@@ -25,6 +25,4 @@ let package = Package(
             name: "FetchNodeDetailsTests",
             dependencies: ["FetchNodeDetails"]),
     ]
-    
-    ,swiftLanguageVersions: [.v5]
 )
