@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -13,7 +13,7 @@ let package = Package(
             targets: ["FetchNodeDetails"]),
     ],
     dependencies: [
-        .package(name:"web3.swift", url: "https://github.com/argentlabs/web3.swift", branch: "develop"),
+        .package(url: "https://github.com/argentlabs/web3.swift", branch: "develop"),
         .package(url: "https://github.com/mxcl/PromiseKit", from: "6.0.0")
     ],
     targets: [
